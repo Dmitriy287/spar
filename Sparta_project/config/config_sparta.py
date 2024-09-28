@@ -8,11 +8,13 @@ def get_playwright():
         yield playwright
 
 
+
 @pytest.fixture
 def browser(get_playwright):
     browser = get_playwright.firefox.launch(headless=False)
     yield browser
     browser.close()
+
 
 @pytest.fixture
 def browser_context(browser):
@@ -20,8 +22,9 @@ def browser_context(browser):
     yield context
     context.close()
 
+
 @pytest.fixture
-def page(browser_context: BrowserContext):
+def page(browser_context: BrowserContext) -> Page:
     page = browser_context.new_page()
     yield page
     page.close()
