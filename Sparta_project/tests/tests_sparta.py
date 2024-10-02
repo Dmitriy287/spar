@@ -19,7 +19,7 @@ def menu(page: Page):
     def menu_func():
         page.goto(data_test)
         page.click(locator_clothe1)
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(1000)
         page.click(locator_hats1)
         page.wait_for_timeout(2000)
         page.click(locator_a_cap)
@@ -39,6 +39,7 @@ def product_catalog(page: Page):
         page.click(locator_kimono_karate)
         page.wait_for_timeout(2000)
         page.screenshot(path="screenshots/product_catalog.png")
+        assert page.inner_text('h1') == 'Кимоно для карате'
         page.click(locator_logo)
     return product_catalog_func
 
@@ -81,9 +82,11 @@ def one_click(page: Page):
         page.click(locator_cupon)
         page.fill(locator_field_cupon, data_cupon)
         page.wait_for_timeout(2000)
-        page.fill(locator_name, data_name)
+        page.fill(locator_firstname, data_firstname)
+        page.fill(locator_lastname, data_lastname)
         page.fill(locator_phone, data_phone)
-        page.wait_for_timeout(1000)
+        page.fill(locator_email, data_email)
+        page.wait_for_timeout(2000)
         assert page.is_visible(locator_basket)
         page.screenshot(path="screenshots/one_click.png")
         page.wait_for_timeout(2000)
