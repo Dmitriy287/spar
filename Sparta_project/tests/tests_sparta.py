@@ -3,7 +3,6 @@ from Sparta_project.locators.locators_sparta import *
 from Sparta_project.data.data_sparta import *
 
 
-
 @pytest.fixture
 def start_page(page: Page):
     def start_page_func():
@@ -86,6 +85,7 @@ def one_click(page: Page):
         page.fill(locator_lastname, data_lastname)
         page.fill(locator_phone, data_phone)
         page.fill(locator_email, data_email)
+        page.click(locator_ok)
         page.wait_for_timeout(2000)
         assert page.is_visible(locator_basket)
         page.screenshot(path="screenshots/one_click.png")
@@ -127,7 +127,8 @@ def selection_by_parameters(page: Page):
         page.wait_for_timeout(1000)
         page.click(locator_Manto)
         page.wait_for_timeout(1000)
-        page.click(locator_size_s)
+        page.click(locator_all_size)
+        page.click(locator_size_l)
         page.wait_for_timeout(1000)
         page.click(locator_show)
         page.wait_for_timeout(2000)
